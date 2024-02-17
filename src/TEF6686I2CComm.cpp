@@ -11,7 +11,7 @@ void TEF6686I2CComm::Writei2c(uint8_t data)
 void TEF6686I2CComm::GetCommand(uint8_t module, uint8_t cmd, uint16_t *response, uint8_t responseLength)
 {
     SetCommand(module, cmd, nullptr, 0);
-    uint8_t dataLength = Wire.requestFrom(DEVICE_ADDR, responseLength * 2);
+    uint8_t dataLength = Wire.requestFrom(DEVICE_ADDR, (uint8_t)(responseLength * 2));
     for (int i = 0; i < dataLength / 2; i++)
     {
         uint8_t msb = Wire.read();
