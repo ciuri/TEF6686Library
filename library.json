@@ -1,0 +1,26 @@
+{
+  "name": "TEF6686Library",
+  "version": "1.0.0",
+  "description": "TEF6686Library - you can use it to communicate with TEF6686 radio module. Helps with RDS decoding.",
+  "keywords": "TEF6686, Radio, Music, RDS, ESP32, Arduino",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/ciuri/tef6686library.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Paweł Ciuraj",
+      "email": "ciuri@wp.pl",
+      "url": "https://github.com/ciuri",
+      "maintainer": true
+    }    
+  ],
+  "license": "MIT",
+  "homepage": "https://www.helloworld.org/",
+  "dependencies": {    
+  },
+  "frameworks": "Arduino",
+  "platforms": "*"
+}
