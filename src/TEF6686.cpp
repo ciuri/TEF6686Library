@@ -69,7 +69,14 @@ void TEF6686::UpdateQualityStatus()
 {
     uint16_t result[7];
     tefI2CComm.GetCommand(MODULE_FM, 128, result, 7);
-    quality = result[1];
+    quality.AF_UpdateFlag = ((result[0]>>15 & 1)==1);
+    quality.QualityTimeStamp = (uint16_t)(result[0] & 0x3ff);    
+    quality.Level = result[1];
+    quality.Noise = result[2];
+    quality.Wam = result[3];
+    quality.Offset = result[4];
+    quality.Bandwidth = result[5];
+    quality.Modulation = result[6];
 }
 
 void TEF6686::UpdateRDSStatus()

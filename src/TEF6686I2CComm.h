@@ -5,8 +5,7 @@
 
 class TEF6686I2CComm
 {
-private:
-    void Writei2c(uint8_t data);
+private:    
     uint8_t DEVICE_ADDR = 0x64;
 
 public:
