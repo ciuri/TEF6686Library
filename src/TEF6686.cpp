@@ -1,18 +1,18 @@
 #include <TEF6686.h>
 
-void TEF6686::DspWriteData(const uint8_t *data)
+void TEF6686::WriteInitData(const uint8_t *data)
 {
     uint8_t *pa = (uint8_t *)data;
     uint8_t len, first;
-    for (;;)
+    while(true)
     {
-        len = pgm_read_byte_near(pa++);
-        first = pgm_read_byte_near(pa);
+        len = *pa++;
+        first = *pa;
         if (!len)
             break;
         if (len == 2 && first == 0xff)
         {
-            int delaytime = pgm_read_byte_near(++pa);
+            int delaytime = *(++pa);
             delay(delaytime);
             pa++;
         }
@@ -20,7 +20,7 @@ void TEF6686::DspWriteData(const uint8_t *data)
         {
             Wire.beginTransmission(DEVICE_ADDR);
             for (int i = 0; i < len; i++)
-                Wire.write(pgm_read_byte_near(pa++));
+                Wire.write(*(pa++));
             Wire.endTransmission();
         }
     }
@@ -35,7 +35,7 @@ void TEF6686::Init(int sda, int scl, uint32_t freq)
     {
         tefI2CComm.GetCommand(64, 128, state, 1);
         if (state[0] < 2)
-            DspWriteData(DSP_INIT);
+            WriteInitData(INIT_DATA);
 
         else if (state[0] >= 2)
         {
